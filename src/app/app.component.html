@@ -1,0 +1,72 @@
+<!-- change app logo -->
+<app-header [fixed]="true" [navbarBrandFull]="{src:
+'assets/img/brand/logo.png', width: 60, height: 30, alt: 'Torwalt Logo'}"
+[navbarBrandMinimized]="{src: 'assets/img/brand/logo.png', width: 30, height:
+15, alt: 'Torwalt Logo" [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
+    <ul class="nav navbar-nav d-md-down-none">
+        <!-- Components for upper toolbar left -->
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#">Dashboard</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+        <app-user-name-display></app-user-name-display>
+
+        <!-- avatar face with dropdown menu -->
+        <li class="nav-item dropdown" dropdown placement="bottom right">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button"
+            aria-haspopup="true" aria-expanded="false" dropdownToggle
+            (click)="false">
+                <img src="assets/img/avatars/professional.jpg" class="img-avatar"
+                alt="admin@bootstrapmaster.com" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu
+            aria-labelledby="simple-dropdown">
+                <a class="dropdown-item" href="#"><i class="fa fa-lock"></i>
+                Logout</a>
+            </div>
+        </li>
+
+    </ul>
+</app-header>
+
+<div class="app-body">
+
+    <!-- side bar -->
+    <div class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav">
+                <li class="nav-title nav-link">
+                    <a class="nav-link">
+                        <i class="nav-icon cui-dashboard"></i> Widgets
+                    </a>
+                </li>
+                <li>
+                    <app-widget-selection
+                    (createBarchartEvent)="LayoutComponent.layoutService.addItem('BarChart')"
+                    (createMapEvent)="LayoutComponent.layoutService.addItem('MapChart')"
+                    (createCardEvent)="LayoutComponent.layoutService.addItem('Card')"
+                    (createInputEvent)="LayoutComponent.layoutService.addItem('Input')"
+                    (createTableEvent)="LayoutComponent.layoutService.addItem('Table')">
+                    </app-widget-selection>
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <main class="main">
+
+        <!-- Widget Content -->
+        <div>
+            <app-layout #LayoutComponent></app-layout>
+        </div>
+    </main>
+
+</div>
+<app-footer>
+    <span><a href="https://torwalt.github.io/">Alex Dadiani</a> </span>
+    <span class="ml-auto">Powered by <a href="https://coreui.io/angular">CoreUI
+    for Angular</a></span>
+</app-footer>

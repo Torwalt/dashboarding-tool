@@ -1,0 +1,60 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title"> Card Component </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="datasets">Select Data</label>
+
+                <div class="input-group">
+                    <span>
+
+                        <mat-form-field>
+                            <mat-label>Select Dataset</mat-label>
+                            <mat-select [(ngModel)]='selectedDataset' name="dataset"
+                                (selectionChange)="fillLabels($event.value)">
+                                <mat-option *ngFor="let d of datasets" [value]="d">
+                                    {{ d }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Label</mat-label>
+                            <mat-select [(ngModel)]='selectedLabel' name="datalabel"
+                            (selectionChange)="getData($event.value)">
+                                <mat-option *ngFor="let l of labels" [value]="l">
+                                    {{ l }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </span>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark"
+        (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+
+<span style="float:left">
+    <button mat-icon-button type="button" class="btn btn-primary" (click)="open(content)">
+        <i class="fa fa-cogs bg-primary float-center"></i>
+    </button>
+    <span style="float:right">
+        <p class="h5 text-primary">
+            {{ formattedData }}
+        </p>
+        <p class="text-muted text-uppercase font-weight-bold font-xs">
+            {{ selectedLabel }}
+        </p>
+    </span>
+</span>

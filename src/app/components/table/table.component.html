@@ -1,0 +1,57 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title"> Table Component </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="datasets">Select Data</label>
+
+                <div class="input-group">
+                    <span>
+
+                        <mat-form-field>
+                            <mat-label>Select Dataset</mat-label>
+                            <mat-select [(ngModel)]='selectedDataset' name="dataset">
+                                <mat-option *ngFor="let d of datasets" [value]="d">
+                                    {{ d }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </span>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="getData();
+        modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+
+<button mat-icon-button type="button" class="btn btn-primary" (click)="open(content)">
+    <i class="fa fa-cogs bg-primary float-center"></i>
+</button>
+
+
+<!-- <div class="card-body"> -->
+<cdk-virtual-scroll-viewport itemSize="itemSize" matSort style="height:100%; width:max">
+    <table mat-table [dataSource]="data">
+
+        <ng-container *cdkVirtualFor="let c of cols" [matColumnDef]="c">
+            <td mat-header-cell *matHeaderCellDef mat-sort-header> {{ c }}
+            </td>
+            <td mat-cell *matCellDef="let element"> {{ element[c] }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="cols"></tr>
+        <tr mat-row *matRowDef="let row; columns: cols;"></tr>
+
+    </table>
+</cdk-virtual-scroll-viewport>
+<!-- </div> -->

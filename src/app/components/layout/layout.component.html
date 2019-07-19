@@ -1,0 +1,24 @@
+<gridster [options]="options" >
+    <gridster-item *ngFor="let item of layout" [item]="item" class="container-fluid">
+        <button mat-icon-button (click)="layoutService.deleteItem(item.id)" style="height:4%; width:4%">
+            <i class="fa fa-window-close"></i>
+        </button>
+        <div [ngSwitch]="item.ChartType"  style="height:95%; width:95%">
+            <div *ngSwitchCase="'BarChart'" style="height:80%; width:80%">
+                <app-barchart #BarchartComponent></app-barchart>
+            </div>
+            <div *ngSwitchCase="'MapChart'" style="height:100%;">
+                <app-map #MapComponent></app-map>
+            </div>
+            <div *ngSwitchCase="'Card'" style="height:80%; width:80%">
+                <app-card #CardComponent></app-card>
+            </div>
+            <div *ngSwitchCase="'Input'" style="height:80%; width:80%">
+                <app-textfield #InputComponent></app-textfield>
+            </div>
+            <div *ngSwitchCase="'Table'" style="height:85%; width:85%">
+                <app-table #TableComponent></app-table>
+            </div>
+        </div>
+    </gridster-item>
+</gridster>
